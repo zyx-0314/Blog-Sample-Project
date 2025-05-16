@@ -3,10 +3,10 @@
 <div align="center">
   <a href="https://github.com/zyx-0314/">
 
-  <img src="./public/personalLogo/ian cedric.jpeg" alt="Nyebe" width="130" height="100">
+  <img src="./public/personalLogo/ianCedric.jpeg" alt="Nyebe" width="130" height="100">
 
   </a>
-  <h3 align="center">Blog Mosh</h3>
+  <h3 align="center">Bento Blog</h3>
 </div>
 
 ![](https://visit-counter.vercel.app/counter.png?page=zyx-0314/Blog-Sample-Project)
