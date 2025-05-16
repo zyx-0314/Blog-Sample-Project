@@ -1,18 +1,15 @@
 <a name="readme-top">
 
-<br/>
-
-<br />
 <div align="center">
   <a href="https://github.com/zyx-0314/">
 
-  <img src="./public/personal logo/ian cedric.jpeg" alt="Nyebe" width="130" height="100">
+  <img src="./public/personalLogo/ian cedric.jpeg" alt="Nyebe" width="130" height="100">
 
   </a>
   <h3 align="center">Blog Mosh</h3>
 </div>
 
-![](https://visit-counter.vercel.app/counter.png?page=zyx-0314/AD-CI4-Template-Project)
+![](https://visit-counter.vercel.app/counter.png?page=zyx-0314/Blog-Sample-Project)
 
 <!-- [![CI](https://img.shields.io/github/actions/workflow/status/zyx-0314/Blog-Sample-Project/ci.yml?branch=main&label=CI)](https://github.com/zyx-0314/Blog-Sample-Project/actions/workflows/ci.yml) -->
 <!-- [![Coverage](https://img.shields.io/codecov/c/github/zyx-0314/Blog-Sample-Project?label=Coverage)](https://app.codecov.io/gh/zyx-0314/Blog-Sample-Project) -->
@@ -30,10 +27,7 @@ Bento Blog is a minimal, dark/light-themed blogging platform powered by Next.js,
 * [Quick Start](#quick-start)
 * [Configuration](#configuration)
 * [Folder Structure](#folder-structure)
-* [Contributing](#contributing)
 * [Testing](#testing)
-* [Deployment](#deployment)
-* [License](#license)
 
 ---
 
