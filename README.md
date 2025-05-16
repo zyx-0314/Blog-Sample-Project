@@ -36,7 +36,7 @@ Bento Blog is a minimal, dark/light-themed blogging platform powered by Next.js,
 * **Authentication** – secure signup, login, logout via Supabase Auth  
 * **Blog Posts** – create, edit, delete, with live Markdown preview & Zod validation  
 * **Browsing** – paginated bento-grid list of posts with search/filter stubs  
-* **Interaction** – threaded comments plus per-user upvote/downvote  
+* **Interaction** – threaded comments plus per-user upVote/downVote  
 * **Theming** – instant dark / light mode toggle using ShadCN/ui  
 * **Responsive UI** – minimal, mobile-first layout  
 * **CI/CD & Testing** – Dockerized dev, Vercel deploy, Jest + RTL tests  
@@ -181,15 +181,20 @@ npm start
 │   ├── elements/                # Atomic UI elements (buttons, inputs)
 │   ├── features/                # Feature-specific composites (e.g. PostCard)
 │   └── ui/                      # ShadCN/ui wrappers & custom variants
+├── dockers-creds/                        
 ├── docs/                        # Project documentation
 │   ├── dev-manual.md            # Conventions, scripts, setup
 │   ├── schema.md                # Prisma & Supabase schema
 │   └── test-plan.md             # Test strategy & reports
 ├── lib/                         # Helpers (API clients, util functions)
+├── node_modules/                         
+├── hook/                        
 ├── public/                      # Static assets (images, icons, favicons)
 ├── prisma/                      # Prisma schema & SQL migrations
 ├── store/                       # Redux Toolkit slices & store config
+├── .dockerignore                         
 ├── .env                         # Local environment variables (git-ignored)
+├── .gitignore                         
 ├── docker-compose.yml           # Local dev containers (app + db)
 ├── Dockerfile                   # Production container definition
 ├── eslint.config.mjs            # ESLint rules & Next.js presets
