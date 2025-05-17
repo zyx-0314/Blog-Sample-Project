@@ -164,7 +164,7 @@ Seed data script: `npm run seed` .
 | Symptom                   | Fix                                                   |
 | ------------------------- | ----------------------------------------------------- |
 | `Error: missing env vars` | Verify `.env` keys match Supabase project             |
-| Docker port clash         | Set `PORT=3001` in `.env` |
+| Docker port clash         | Set `PORT=3003` in `.env` |
 | Prisma migration fails    | `npx prisma migrate reset` (dev DB only)              |
 | Tests time out            | Increase Playwright timeout in `playwright.config.ts` |
 
