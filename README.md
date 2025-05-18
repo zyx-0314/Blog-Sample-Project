@@ -177,36 +177,33 @@ npm start
 ├── app/                         # Next.js App Router root
 │   ├── (pages)/                 # Route groups & page components
 │   └── globals.css              # Global Tailwind styles
-├── components/                  # Reusable building blocks
+├── components/                  # Reusable UI building blocks
 │   ├── elements/                # Atomic UI elements (buttons, inputs)
-│   ├── features/                # Feature-specific composites (e.g. PostCard)
+│   ├── features/                # Feature-level composites (e.g. PostCard)
 │   └── ui/                      # ShadCN/ui wrappers & custom variants
-├── dockers-creds/                        
-├── docs/                        # Project documentation
-│   ├── dev-manual.md            # Conventions, scripts, setup
-│   ├── schema.md                # Prisma & Supabase schema
-│   └── test-plan.md             # Test strategy & reports
-├── lib/                         # Helpers (API clients, util functions)
-├── node_modules/                         
-├── hook/                        
+├── dockers-creds/               # Docker registry credentials & helper scripts
+├── docs/                        # Project documentation (dev manual, schema, tests)
+├── lib/                         # Helper utilities & API clients
+├── node_modules/                # Installed NPM dependencies (auto-generated)
+├── hook/                        # Git hooks (e.g. pre-commit lint + format)
 ├── public/                      # Static assets (images, icons, favicons)
 ├── prisma/                      # Prisma schema & SQL migrations
-├── store/                       # Redux Toolkit slices & store config
-├── .dockerignore                         
+├── store/                       # Redux Toolkit slices & store configuration
+├── .dockerignore                # Exclude files from Docker build context
 ├── .env                         # Local environment variables (git-ignored)
-├── .gitignore                         
+├── .gitignore                   # Files & folders Git should ignore
 ├── docker-compose.yml           # Local dev containers (app + db)
 ├── Dockerfile                   # Production container definition
 ├── eslint.config.mjs            # ESLint rules & Next.js presets
 ├── next.config.ts               # Next.js configuration & plugins
-├── jest.config.js               # Jest test runner config
+├── jest.config.js               # Jest test runner configuration
 ├── tsconfig.json                # TypeScript compiler options
 ├── CODE_OF_CONDUCT.md           # Community guidelines
-├── LICENSE                      # Project license (MIT)
+├── LICENSE                      # MIT license
 ├── package.json                 # NPM scripts & dependencies
 ├── package-lock.json            # Exact dependency versions
 ├── postcss.config.mjs           # PostCSS + Tailwind plugins
-└── README.md                    # Project overview (this file)
+└── README.md                    # Project overview
 
 ```
 

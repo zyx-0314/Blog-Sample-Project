@@ -19,13 +19,13 @@ Key goals:
 
 ## 2. Prerequisites
 
-| Tool | Version | Notes |
-|------|---------|-------|
-| Node.js | ≥ 20 LTS | nvm recommended |
-| Docker & Compose | ≥ v20 | for local containers |
-| Git | ≥ 2.30 | |
-| Supabase account | — | create a free project |
-| VS Code (opt.) | — | extensions: ESLint, Prettier, Tailwind CSS IntelliSense |
+| Tool             | Version  | Notes                                                   |
+| ---------------- | -------- | ------------------------------------------------------- |
+| Node.js          | ≥ 20 LTS | nvm recommended                                         |
+| Docker & Compose | ≥ v20    | for local containers                                    |
+| Git              | ≥ 2.30   |                                                         |
+| Supabase account | —        | create a free project                                   |
+| VS Code (opt.)   | —        | extensions: ESLint, Prettier, Tailwind CSS IntelliSense |
 
 ---
 
@@ -50,14 +50,28 @@ Visit **[http://localhost:3000](http://localhost:3000)** – hot-reload is enabl
 
 ---
 
+### Use Docker
+
+| Command                            | What it does                                                                    |
+| ---------------------------------- | ------------------------------------------------------------------------------- |
+| **Build & run prod stack locally** | `docker compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d` |
+| **Stop & remove**                  | `docker compose -f docker-compose.yml -f docker-compose.prod.yml down` |
+
+---
+
 ## 4. Environment Variables
 
-| Variable                        | Required | Description                      |
-| ------------------------------- | -------- | -------------------------------- |
+| Variable                                     | Required | Description                      |
+| -------------------------------------------- | -------- | -------------------------------- |
+| **Supabase (remote, used after deployment)** |          |                                  |
 | `NEXT_PUBLIC_SUPABASE_URL` | ✅        | Supabase REST URL                |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | ✅        | Public anon key                  |
-| `SUPABASE_SERVICE_ROLE_KEY` | ⬜        | Server-side admin tasks          |
+| **Database (local Postgres container)**      |          |                                  |
 | `DATABASE_URL` | ✅        | PostgreSQL URL for Prisma        |
+| `DATABASE_USER` | ✅        | PostgreSQL DB service user       |
+| `DATABASE_PASSWORD` | ✅        | PostgreSQL DB service password   |
+| `DATABASE_DB` | ✅        | PostgreSQL DB                    |
+| **NextJS Runtime**                           |          |                                  |
 | `JWT_SECRET` | ✅        | Secret for API route signing     |
 | `PORT` | ⬜        | Override dev port (default 3000) |
 
@@ -67,18 +81,23 @@ Visit **[http://localhost:3000](http://localhost:3000)** – hot-reload is enabl
 
 ## 5. Available Scripts
 
-| Command                       | Purpose                       |
-| ----------------------------- | ----------------------------- |
-| `npm run dev` | Start Next.js with hot-reload |
-| `npm run build` / `npm start` | Production build & start      |
-| `npm run lint` | ESLint check                  |
-| `npm run format` | Prettier auto-format          |
-| `npm run typecheck` | TypeScript strict mode        |
-| `npm run test` | Jest unit & integration tests |
-| `npm run test:watch` | Jest watch mode               |
-| `npm run test:e2e` | Playwright end-to-end tests   |
-| `npx prisma migrate dev` | Run local DB migration        |
-| `npx prisma studio` | Visual DB browser             |
+| Command                        | Purpose                                                                                                 |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| `npm run dev` | Start the Next.js dev server with hot-reload on the port defined in `PORT` .                            |
+| `npm run build` / `npm start` | Compile a production build ( `next build` ) and serve it with `next start` .                            |
+| `npm run lint` | Run ESLint against all source files.                                                                    |
+| `npm run format` | Auto-format code with Prettier.                                                                         |
+| `npm run typecheck` | Perform a strict TypeScript project check without emitting files.                                       |
+| `npm run test` | Execute Jest unit + integration test suite once.                                                        |
+| `npm run test:watch` | Launch Jest in watch mode—re-runs affected tests on file change.                                        |
+| `npm run test:coverage` | Run Jest and generate a coverage report in `/coverage` .                                                |
+| `npm run test:coverage:report` | Open the HTML coverage report in your default browser.                                                  |
+| `npm run test:e2e` | Execute all Playwright end-to-end tests headlessly.                                                     |
+| `npm run db:generate` | Run `prisma generate` to refresh the typed Prisma client.                                               |
+| `npm run db:push` | Apply the current Prisma schema to the local database with `prisma db push` .                           |
+| `npm run db:push` | Apply the live Prisma schema to the local database with `prisma db pull` .                           |
+| `npm run db:migrate` | Create & apply a new migration via `prisma migrate dev` , prompting for a name.                         |
+| `npm run db:reset` | Reset the database and re-apply migrations ( `prisma migrate reset` )—**destructive**, use only in dev. |
 
 ---
 
@@ -102,11 +121,17 @@ Visit **[http://localhost:3000](http://localhost:3000)** – hot-reload is enabl
 * **Component folders** (`components/`): lower-snake-case
 * **Presenter components**: PascalCase filenames — e.g. `PostCard.tsx`
 * **Component logic hooks**: camelCase starting with `use` — e.g. `usePostCard.ts`
-* Each page and components therefore has **two files**: its visual `page.tsx` and a matching logic hook `useXxx.ts`
 
 ---
 
-## 8. Testing Strategy
+## 8. File Creation Guide
+
+* **Page Files** compose of 2 files: `page.tsx` (UI) & `useXxx.tx` (Logic hook)
+* **Component Files** compose of 2 files: `XxxXxx.tsx` (UI) & `useXxxXxx.tx` (Logic hook)
+
+---
+
+## 9. Testing Strategy
 
 ### Unit & Integration
 
@@ -132,18 +157,6 @@ Coverage threshold: **80 %** lines & branches.
 
 ---
 
-## 9. CI/CD Pipeline
-
-### GitHub Actions
-
-1. **Install → Lint → Type-Check → Test** (Jest + Playwright)
-2. **Build** Docker image
-3. **Deploy** to Vercel on `main` success
-
-Badges on README show current status.
-
----
-
 ## 10. Database & Migrations
 
 * PostgreSQL hosted by Supabase.
@@ -151,7 +164,7 @@ Badges on README show current status.
 * Generate client & push migrations:
 
 ```bash
-npx prisma migrate dev --name <change>
+npx prisma migrate dev --name <label_table>
 npx prisma generate
 ```
 
@@ -164,7 +177,7 @@ Seed data script: `npm run seed` .
 | Symptom                   | Fix                                                   |
 | ------------------------- | ----------------------------------------------------- |
 | `Error: missing env vars` | Verify `.env` keys match Supabase project             |
-| Docker port clash         | Set `PORT=3001` in `.env` |
+| Docker port clash         | Set `PORT=3003` in `.env` |
 | Prisma migration fails    | `npx prisma migrate reset` (dev DB only)              |
 | Tests time out            | Increase Playwright timeout in `playwright.config.ts` |
 
