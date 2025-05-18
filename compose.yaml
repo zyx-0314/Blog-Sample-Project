@@ -1,6 +1,6 @@
 services:
-  server:
-    container_name: server
+  webApp:
+    container_name: webApp
     build:
       context: .
       dockerfile: dev.Dockerfile
