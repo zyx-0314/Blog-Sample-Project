@@ -20,7 +20,7 @@ RUN addgroup -S ${developer_group} \
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm ci --no-audit --prefer-offline --progress=false
+RUN npm i --force --no-audit --prefer-offline --progress=false
 
 # Note:
 # ci means clean install

@@ -1,31 +1,28 @@
 services:
-  webApp:
-    container_name: webApp
+  web-app:
+    container_name: web-app
     build:
-      context: .
+      context: ./
       dockerfile: dev.Dockerfile
     ports:
       - 3003:3003
     environment:
       NODE_ENV: development
       DATABASE_URL: postgres://postgres:password@db:5432/blog-sample-project
-    volumes:
-      - .:/app
-      - /app/node_modules
     depends_on:
-      - db:
+      db:
         condition: service_healthy
     develop:
       watch:
-        - path: .
+        - path: ./
           target: /app
           action: sync
         - path: ./package.json
-          action: reload
+          action: rebuild
         - path: ./dev.Dockerfile
-          action: reload
+          action: rebuild
         - path: ./package-lock.json
-          action: reload
+          action: rebuild
 
   db:
     container_name: db
@@ -33,7 +30,6 @@ services:
     restart: unless-stopped
     secrets:
       - db-password
-
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: blog-sample-project
