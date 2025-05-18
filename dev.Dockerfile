@@ -20,9 +20,10 @@ RUN addgroup -S ${developer_group} \
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --no-audit --prefer-offline --progress=false
+RUN npm ci --no-audit --prefer-offline --progress=false
 
 # Note:
+# ci means clean install
 # --prefer-offline means prefer offline packages
 # --progress=false means do not show progress
 # --no-audit means do not audit the package
