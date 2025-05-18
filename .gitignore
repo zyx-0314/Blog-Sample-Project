@@ -48,4 +48,4 @@ next-env.d.ts
 /app/test
 
 # docker hidden creds
-/docker-creds
+/dockers-creds
